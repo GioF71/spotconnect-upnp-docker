@@ -22,8 +22,8 @@ docker build . -t giof71/spotconnect-upnp:latest
 
 ## Configuration
 
-Configuration will be available with a set of environment variables.  
-There are currently just a few variables available to set; more will come as soon as possible.  
+Configuration is available through a set of environment variables.  
+There are currently just a few variables available to set, but more will come as soon as possible.  
 
 VARIABLE|DESCRIPTION
 :---|:---
@@ -43,7 +43,7 @@ volumes:
 
 services:
   spotconnect-upnp:
-    image: giof71/spotconnect-upnp:local
+    image: giof71/spotconnect-upnp:latest
     container_name: spotconnect-upnp
     network_mode: host
     environment:
