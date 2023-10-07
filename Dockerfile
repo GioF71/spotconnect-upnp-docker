@@ -1,5 +1,11 @@
 from debian:stable-slim
 
+LABEL maintainer="GioF71"
+LABEL source="https://github.com/GioF71/spotconnect-upnp-docker"
+
+ENV PUID ""
+ENV PGID ""
+
 VOLUME /config
 
 RUN apt-get update
