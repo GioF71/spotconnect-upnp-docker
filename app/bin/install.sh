@@ -1,5 +1,8 @@
 #!/bin/bash
 
+apt-get update
+apt-get install -y wget unzip
+
 mkdir /app/release -p
 
 ARCH=`uname -m`
@@ -34,6 +37,9 @@ chmod 755 "/app/bin/$SELECT_BIN_FILE-static"
 mkdir /app/conf -p
 echo "$SELECT_BIN_FILE" > /app/bin/executable.txt
 echo "$SELECT_BIN_FILE-static" > /app/bin/executable-static.txt
+
+apt-get remove -y wget unzip
+apt-get autoremove -y
 
 rm -Rf /app/release/
 rm -rf /var/lib/apt/lists/*
