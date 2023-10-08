@@ -67,6 +67,9 @@ if [[ -n "$PREFER_STATIC" ]]; then
 fi
 
 binary_file=$(cat $executable_txt_file_name)
+version=$(cat /app/bin/version.txt)
+
+echo "Using SpotConnect upnp version [${version}]"
 
 CMD_LINE="/app/bin/$binary_file"
 
