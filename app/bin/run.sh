@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# errors
+# 1 invalid parameter
+
 DEFAULT_UID=1000
 DEFAULT_GID=1000
 
@@ -50,7 +53,20 @@ fi
 chown -R $PUID:$PGID $HOME_DIR
 chown -R $PUID:$PGID /config
 
-binary_file=$(cat /app/bin/executable.txt)
+executable_txt_file_name="/app/bin/executable.txt"
+if [[ -n "$PREFER_STATIC" ]]; then
+    echo "PREFER_STATIC=[$PREFER_STATIC]"
+    if [[ "${PREFER_STATIC^^}" == "YES" || "${PREFER_STATIC^^}" == "Y" ]]; then
+        echo "Selecting static version ..."
+        executable_txt_file_name="/app/bin/executable-static.txt"
+        echo ". done."
+    elif [[ "${PREFER_STATIC^^}" != "NO" && "${PREFER_STATIC^^}" != "N" ]]; then
+        echo "Invalid value for PREFER_STATIC [$PREFER_STATIC]!"
+        exit 1
+    fi
+fi
+
+binary_file=$(cat $executable_txt_file_name)
 
 CMD_LINE="/app/bin/$binary_file"
 

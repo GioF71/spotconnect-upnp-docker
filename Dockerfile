@@ -5,6 +5,7 @@ LABEL source="https://github.com/GioF71/spotconnect-upnp-docker"
 
 ENV PUID ""
 ENV PGID ""
+ENV PREFER_STATIC ""
 
 VOLUME /config
 

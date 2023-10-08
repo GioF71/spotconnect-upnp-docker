@@ -17,17 +17,23 @@ bin_file_name[$arch_arm_v8]="spotupnp-linux-aarch64"
 SELECT_BIN_FILE=${bin_file_name["${ARCH}"]}
 
 echo "SELECT_BIN_FILE=[$SELECT_BIN_FILE]"
-SELECT_BIN_FILE="$SELECT_BIN_FILE-static"
 
 cd /app/release
 wget https://github.com/philippe44/SpotConnect/releases/download/0.2.6/SpotConnect-0.2.6.zip
 unzip SpotConnect*zip
 rm SpotConnect*zip
-mv $SELECT_BIN_FILE /app/bin
+
+mkdir -p /app/bin
+
+mv $SELECT_BIN_FILE /app/bin/
 chmod 755 "/app/bin/$SELECT_BIN_FILE"
 
+mv "$SELECT_BIN_FILE-static" /app/bin/
+chmod 755 "/app/bin/$SELECT_BIN_FILE-static"
+
 mkdir /app/conf -p
-echo $SELECT_BIN_FILE > /app/bin/executable.txt
+echo "$SELECT_BIN_FILE" > /app/bin/executable.txt
+echo "$SELECT_BIN_FILE-static" > /app/bin/executable-static.txt
 
 rm -Rf /app/release/
 rm -rf /var/lib/apt/lists/*

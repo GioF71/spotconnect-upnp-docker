@@ -29,6 +29,7 @@ VARIABLE|DESCRIPTION
 :---|:---
 PUID|Group used to run the application, defaults to `1000`
 PGID|Group used to run the application, defaults to `1000`
+PREFER_STATIC|Prefer `-static` version of the executable, defaults to `no`
 
 ## Run
 
