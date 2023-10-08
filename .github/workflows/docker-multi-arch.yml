@@ -17,7 +17,6 @@ jobs:
       fail-fast: false
       matrix:
         base: ["stable"]
-        sourceforge: ["Y", "N"]
 
     steps:
       - name: Checkout
@@ -98,8 +97,6 @@ jobs:
           echo "Building tags: ["${tags}"]"
           echo "RELEASE_TAGS=${tags}" >> $GITHUB_OUTPUT
           echo "BASE_IMAGE=${select_base_image}" >> $GITHUB_OUTPUT
-          echo "DOWNLOAD_FROM_SOURCEFORGE=N" >> $GITHUB_OUTPUT
-          echo "BUILD_PLATFORMS=${build_platforms}" >> $GITHUB_OUTPUT
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
