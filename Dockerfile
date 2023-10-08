@@ -1,4 +1,5 @@
-from debian:stable-slim
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE:-debian:stable-slim}
 
 LABEL maintainer="GioF71"
 LABEL source="https://github.com/GioF71/spotconnect-upnp-docker"
