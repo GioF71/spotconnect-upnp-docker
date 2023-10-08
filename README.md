@@ -9,8 +9,10 @@ It will let you use your upnp/dlna renderers (including those created with [upmp
 
 ## Links
 
-Source code is [here](https://github.com/GioF71/spotconnect-upnp-docker).  
-Prebuilt docker images will come as soon as possible
+REPOSITORY|DESCRIPTION
+:---|:---
+Source code|[GitHub](https://github.com/GioF71/spotconnect-upnp-docker)
+Docker images|[Docker Hub](https://hub.docker.com/r/giof71/spotconnect-upnp)
 
 ## Build
 
@@ -54,3 +56,10 @@ services:
       - config:/config
     restart: unless-stopped
 ```
+
+## Changelog
+
+DATE|DESCRIPTION
+:---|:---
+2023-10-08|Docker images avaialable
+2023-10-07|First code release (no images)
