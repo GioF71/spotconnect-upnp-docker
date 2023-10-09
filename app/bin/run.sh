@@ -2,6 +2,7 @@
 
 # errors
 # 1 invalid parameter
+# 2 invalid vorbis bitrate
 
 DEFAULT_UID=1000
 DEFAULT_GID=1000
@@ -62,7 +63,7 @@ if [[ -n "$PREFER_STATIC" ]]; then
         echo ". done."
     elif [[ "${PREFER_STATIC^^}" != "NO" && "${PREFER_STATIC^^}" != "N" ]]; then
         echo "Invalid value for PREFER_STATIC [$PREFER_STATIC]!"
-        exit 1
+        exit 2
     fi
 fi
 
@@ -72,8 +73,19 @@ echo "Using SpotConnect upnp version [${version}]"
 
 CMD_LINE="$binary_file"
 
-mkdir /app/conf -p
+if [[ -z "${VORBIS_BITRATE}" ]]; then
+    echo "VORBIS_BITRATE not set, using 320"
+    CMD_LINE="$CMD_LINE -r 320"
+else
+    if [[ "${VORBIS_BITRATE}" == "320" || "${VORBIS_BITRATE}" == "160" || "${VORBIS_BITRATE}" == "96" ]]; then
+        CMD_LINE="$CMD_LINE -r ${VORBIS_BITRATE}"
+    else
+        echo "Invalid VORBIS_BITRATE [${VORBIS_BITRATE}]"
+        exit 2
+    fi
+fi
 
-CMD_LINE="$CMD_LINE -x /config/config.xml -I -j -k -Z -r 320"
+mkdir /app/conf -p
+CMD_LINE="$CMD_LINE -x /config/config.xml -I -j -k -Z"
 echo "Command Line: ["$CMD_LINE"]"
 su - $USER_NAME -c "$CMD_LINE"

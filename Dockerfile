@@ -34,6 +34,7 @@ LABEL source="https://github.com/GioF71/spotconnect-upnp-docker"
 ENV PUID ""
 ENV PGID ""
 ENV PREFER_STATIC ""
+ENV VORBIS_BITRATE ""
 
 VOLUME /config
 

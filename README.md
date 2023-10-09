@@ -33,6 +33,7 @@ VARIABLE|DESCRIPTION
 PUID|Group used to run the application, defaults to `1000`
 PGID|Group used to run the application, defaults to `1000`
 PREFER_STATIC|Prefer `-static` version of the executable, defaults to `no`
+VORBIS_BITRATE|Set the vorbis bitrate to `320`, `160` or `96`, defaults to `320`
 
 ## Run
 
@@ -62,6 +63,7 @@ services:
 
 DATE|DESCRIPTION
 :---|:---
+2023-10-09|Add support for VORBIS_BITRATE variable
 2023-10-09|Bump to release [0.2.7](https://github.com/philippe44/SpotConnect/releases/tag/0.2.7)
 2023-10-08|Docker images available
 2023-10-07|First code release (no images)
