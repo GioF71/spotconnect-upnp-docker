@@ -63,5 +63,5 @@ services:
 DATE|DESCRIPTION
 :---|:---
 2023-10-09|Bump to release [0.2.7](https://github.com/philippe44/SpotConnect/releases/tag/0.2.7)
-2023-10-08|Docker images avaialable
+2023-10-08|Docker images available
 2023-10-07|First code release (no images)
