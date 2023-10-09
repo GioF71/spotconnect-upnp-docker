@@ -1,5 +1,32 @@
 ARG BASE_IMAGE
-FROM ${BASE_IMAGE:-debian:stable-slim}
+FROM ${BASE_IMAGE:-debian:stable-slim} AS BASE
+
+RUN mkdir /app/bin -p
+COPY app/bin/install-pkg.sh /app/bin/
+RUN chmod u+x /app/bin/install-pkg.sh
+RUN /app/bin/install-pkg.sh
+RUN rm /app/bin/install-pkg.sh
+
+COPY app/bin/download.sh /app/bin/
+RUN chmod u+x /app/bin/download.sh
+RUN /app/bin/download.sh
+RUN rm /app/bin/download.sh
+
+COPY app/bin/install.sh /app/bin/
+RUN chmod u+x /app/bin/install.sh
+RUN /app/bin/install.sh
+RUN rm /app/bin/install.sh
+
+COPY app/bin/cleanup.sh /app/bin/
+RUN chmod u+x /app/bin/cleanup.sh
+RUN /app/bin/cleanup.sh
+RUN rm /app/bin/cleanup.sh
+
+COPY app/bin/run.sh /app/bin
+RUN chmod 755 /app/bin/run.sh
+
+FROM scratch
+COPY --from=BASE / /
 
 LABEL maintainer="GioF71"
 LABEL source="https://github.com/GioF71/spotconnect-upnp-docker"
@@ -10,15 +37,4 @@ ENV PREFER_STATIC ""
 
 VOLUME /config
 
-RUN mkdir /app/bin -p
-COPY app/bin/install.sh /app/bin/
-RUN chmod u+x /app/bin/install.sh
-WORKDIR /app/bin/
-RUN /app/bin/install.sh
-RUN rm /app/bin/install.sh
-
-COPY app/bin/run.sh /app/bin
-RUN chmod 755 /app/bin/run.sh
-
-WORKDIR /app/bin
 ENTRYPOINT ["/app/bin/run.sh"]

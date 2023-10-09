@@ -1,9 +1,10 @@
 #!/bin/bash
 
-apt-get update
-apt-get install -y wget unzip
+# errors
+# 1 missing binary file
 
 mkdir /app/release -p
+mkdir /app/bin -p
 
 ARCH=`uname -m`
 echo "ARCH=[$ARCH]"
@@ -19,30 +20,26 @@ bin_file_name[$arch_arm_v8]="spotupnp-linux-aarch64"
 
 SELECT_BIN_FILE=${bin_file_name["${ARCH}"]}
 
+if [ ! -f "/app/release/$SELECT_BIN_FILE" ]; then
+    echo "File /app/release/$SELECT_BIN_FILE not found"
+    exit 1
+fi
+
+if [ ! -f "/app/release/$SELECT_BIN_FILE-static" ]; then
+    echo "File /app/release/$SELECT_BIN_FILE-static not found"
+    exit 1
+fi
+
 echo "SELECT_BIN_FILE=[$SELECT_BIN_FILE]"
-
-SPOT_CONNECT_VERSION="0.2.6"
-
-cd /app/release
-wget "https://github.com/philippe44/SpotConnect/releases/download/${SPOT_CONNECT_VERSION}/SpotConnect-${SPOT_CONNECT_VERSION}.zip"
-unzip SpotConnect*zip
-rm SpotConnect*zip
 
 mkdir -p /app/bin
 
-mv $SELECT_BIN_FILE /app/bin/
-chmod 755 "/app/bin/$SELECT_BIN_FILE"
+mv "/app/release/$SELECT_BIN_FILE" /app/bin/spotupnp-linux
+chmod 755 /app/bin/spotupnp-linux
 
-mv "$SELECT_BIN_FILE-static" /app/bin/
-chmod 755 "/app/bin/$SELECT_BIN_FILE-static"
+mv "/app/release/$SELECT_BIN_FILE-static" /app/bin/spotupnp-linux-static
+chmod 755 /app/bin/spotupnp-linux-static
 
 mkdir /app/conf -p
-echo "$SELECT_BIN_FILE" > /app/bin/executable.txt
-echo "$SELECT_BIN_FILE-static" > /app/bin/executable-static.txt
 echo "$SPOT_CONNECT_VERSION" > /app/bin/version.txt
 
-apt-get remove -y wget unzip
-apt-get autoremove -y
-
-rm -Rf /app/release/
-rm -rf /var/lib/apt/lists/*

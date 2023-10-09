@@ -53,12 +53,12 @@ fi
 chown -R $PUID:$PGID $HOME_DIR
 chown -R $PUID:$PGID /config
 
-executable_txt_file_name="/app/bin/executable.txt"
+binary_file=/app/bin/spotupnp-linux
 if [[ -n "$PREFER_STATIC" ]]; then
     echo "PREFER_STATIC=[$PREFER_STATIC]"
     if [[ "${PREFER_STATIC^^}" == "YES" || "${PREFER_STATIC^^}" == "Y" ]]; then
         echo "Selecting static version ..."
-        executable_txt_file_name="/app/bin/executable-static.txt"
+        binary_file=$binary_file-static
         echo ". done."
     elif [[ "${PREFER_STATIC^^}" != "NO" && "${PREFER_STATIC^^}" != "N" ]]; then
         echo "Invalid value for PREFER_STATIC [$PREFER_STATIC]!"
@@ -66,12 +66,11 @@ if [[ -n "$PREFER_STATIC" ]]; then
     fi
 fi
 
-binary_file=$(cat $executable_txt_file_name)
 version=$(cat /app/bin/version.txt)
 
 echo "Using SpotConnect upnp version [${version}]"
 
-CMD_LINE="/app/bin/$binary_file"
+CMD_LINE="$binary_file"
 
 mkdir /app/conf -p
 
