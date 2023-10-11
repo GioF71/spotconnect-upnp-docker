@@ -24,4 +24,4 @@ jobs:
           pass: ${{ secrets.DOCKER_TOKEN }}
           slug: ${{ secrets.DOCKER_USERNAME }}/spotconnect-upnp
           readme: ./README.md
-          description: Run SpotConnect (UPnP/DLNA mode) on docker
+          description: Run SpotConnect (UPnP mode) on docker
