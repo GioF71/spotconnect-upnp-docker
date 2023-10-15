@@ -1,7 +1,7 @@
 # spotconnect-upnp-docker
 
 A docker image for [SpotConnect (upnp)](https://github.com/philippe44/SpotConnect).  
-The image includes version [0.2.7](https://github.com/philippe44/SpotConnect/releases/tag/0.2.7).  
+The image includes version [0.3.0](https://github.com/philippe44/SpotConnect/releases/tag/0.3.0).  
 
 ## References
 
@@ -63,6 +63,7 @@ services:
 
 DATE|DESCRIPTION
 :---|:---
+2023-10-15|Bump to release [0.3.0](https://github.com/philippe44/SpotConnect/releases/tag/0.3.0)
 2023-10-09|Add support for VORBIS_BITRATE variable
 2023-10-09|Bump to release [0.2.7](https://github.com/philippe44/SpotConnect/releases/tag/0.2.7)
 2023-10-08|Docker images available
