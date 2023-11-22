@@ -1,7 +1,7 @@
 # spotconnect-upnp-docker
 
 A docker image for [SpotConnect (upnp)](https://github.com/philippe44/SpotConnect).  
-The image includes version [0.5.0](https://github.com/philippe44/SpotConnect/releases/tag/0.5.0).  
+The image includes version [0.5.1](https://github.com/philippe44/SpotConnect/releases/tag/0.5.1).  
 
 ## References
 
